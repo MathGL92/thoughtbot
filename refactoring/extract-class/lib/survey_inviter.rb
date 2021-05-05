@@ -56,6 +56,6 @@ class SurveyInviter
   end
 
   def recipient_list
-    @recipient_list ||= @recipients.gsub(/\s+/, '').split(/[\n,;]+/)
+    @recipient_list ||= RecipientsSplitter.new(@recipients).call
   end
 end

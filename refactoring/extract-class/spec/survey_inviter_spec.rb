@@ -68,24 +68,6 @@ describe SurveyInviter, '#deliver' do
         with(invitation, message)
   end
 
-  it 'splits on commas' do
-    stub_invitation
-    deliver(recipients: 'one@example.com,two@example.com')
-    expect_invitations_to(['one@example.com', 'two@example.com'])
-  end
-
-  it 'splits on semicolons' do
-    stub_invitation
-    deliver(recipients: 'one@example.com;two@example.com')
-    expect_invitations_to(['one@example.com', 'two@example.com'])
-  end
-
-  it 'strips spaces' do
-    stub_invitation
-    deliver(recipients: '  one@example.com;  two@example.com  ')
-    expect_invitations_to(['one@example.com', 'two@example.com'])
-  end
-
   def deliver(attributes = {})
     SurveyInviter.new(
       survey: attributes[:survey] || build(:survey),
